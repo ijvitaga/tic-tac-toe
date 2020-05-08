@@ -50,20 +50,17 @@ function init() {
 
 function handleClick(evt) {
    const colIdx = boardEl.indexOf(evt.target);
-   if (colIdx === -1) return;
-   if (board[colIdx] !== null) return;
+   if (colIdx === -1 || board[colIdx] !== null || winner) return;
    board[colIdx]=turn
    turn *= -1
    winner = checkForWin()
    render();
-   if (winner === 1, -1) return;
 }
 
 function render() {
     board.forEach(function(colArr, colIdx) {
         document.getElementById(`${colIdx}`).style.background = players[colArr]
     }); 
-
     if(winner === -1) {
         document.querySelector("#msg").textContent = "Lime Wins!"
     } else if (winner === 1) {
@@ -72,8 +69,7 @@ function render() {
         document.querySelector("#msg").textContent = "It's a Tie!"
     } else {
         document.querySelector("#msg").textContent = ''
-    }
-    
+    }   
 }
 
 function checkForWin() {
@@ -91,5 +87,3 @@ function checkForWin() {
 button.onClick = function(init) {
 
 }
-
-

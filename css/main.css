@@ -30,4 +30,5 @@ body {
 #resetGame {
     font-family: 'Knewave', cursive;
     font-size: 15px;
+    border-color: grey;
 }

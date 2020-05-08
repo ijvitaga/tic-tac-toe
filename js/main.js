@@ -7,7 +7,7 @@ const players = {
     'null': "white"
 }
 const winningCombos = [
-    [0, 1, 2],
+  [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
   [0, 3, 6],
@@ -17,11 +17,14 @@ const winningCombos = [
   [2, 4, 6]
 ]
 
+const resetButton = document.getElementById('resetGame')
+
 
 /*----- app's state (variables) -----*/
 let board; //array of column arrays with 1, -1
 let turn; // 1 or -1 (players)
 let winner; // 1 = player 1, -1 = player 2, 'T' = tie;
+
 
 /*----- cached element references -----*/
 const boardEl = Array.from(document.querySelectorAll('#board > div'));
@@ -29,6 +32,8 @@ const boardEl = Array.from(document.querySelectorAll('#board > div'));
 /*----- event listeners -----*/
 document.getElementById('board')
     .addEventListener('click', handleClick);
+
+resetButton.addEventListener('click', init)
 
 
 /*----- functions -----*/
@@ -46,16 +51,19 @@ function init() {
 function handleClick(evt) {
    const colIdx = boardEl.indexOf(evt.target);
    if (colIdx === -1) return;
+   if (board[colIdx] !== null) return;
    board[colIdx]=turn
    turn *= -1
    winner = checkForWin()
-   render()
+   render();
+   if (winner === 1, -1) return;
 }
 
 function render() {
     board.forEach(function(colArr, colIdx) {
         document.getElementById(`${colIdx}`).style.background = players[colArr]
     }); 
+
     if(winner === -1) {
         document.querySelector("#msg").textContent = "Lime Wins!"
     } else if (winner === 1) {
@@ -80,25 +88,8 @@ function checkForWin() {
     return 'Tie';
 }
 
+button.onClick = function(init) {
 
-
-
-//need to create a game win scenario and can use nested arrays with the possible win scenarios (index numbers)
-
-//template strings `${}`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
